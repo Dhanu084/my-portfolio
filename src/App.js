@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import Bio from './Bio';
+import Direction from './Direction';
+import Experiences from './Experiences';
+import Menu from './Menu';
+import Skills from './Skills';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='snap-y overflow-y-hidden'>
+      <Menu />
+      <Bio />
+      <Experiences />
+      <Skills />
     </div>
   );
 }
