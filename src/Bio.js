@@ -1,6 +1,6 @@
-import React from 'react';
-import { FaLinkedin, FaGithub } from 'react-icons/fa';
-import { SiLeetcode } from 'react-icons/si';
+import React from "react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 
 const Bio = () => (
   <section

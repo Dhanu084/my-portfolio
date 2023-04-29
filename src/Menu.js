@@ -1,81 +1,74 @@
-import React, { useEffect, useState } from 'react';
-import { CgProfile } from 'react-icons/cg';
-import { MdFeaturedPlayList } from 'react-icons/md';
-import { GiSkills } from 'react-icons/gi';
-import { AiFillMail } from 'react-icons/ai';
+import React, { useEffect, useState } from "react";
+import { CgProfile } from "react-icons/cg";
+import { MdFeaturedPlayList } from "react-icons/md";
+import { GiSkills } from "react-icons/gi";
+import { AiFillMail } from "react-icons/ai";
+import { FiMenu } from "react-icons/fi";
 
 const Menu = () => {
-  const [opacity, setOpacity] = useState(1);
-  const [selected, setSelected] = useState('bio');
-
-  const changeOpacity = (val) => {
-    setOpacity(val);
-  };
-  useEffect(() => {
-    if (opacity !== 1) return;
-    const t = setTimeout(() => changeOpacity(10), 3000);
-    return () => {
-      clearTimeout(t);
-    };
-  }, [opacity]);
-  const selectedColor = 'bg-slate-200';
+  const [showMenu, setShowMenu] = useState(false);
 
   const menuOptions = [
     {
-      label: 'Bio',
-      href: 'bio',
+      label: "Bio",
+      href: "bio",
       icon: <CgProfile className='text-3xl color-white ' />
     },
     {
-      label: 'Experiences',
-      href: 'experience',
+      label: "Experiences",
+      href: "experience",
       icon: <MdFeaturedPlayList className='text-3xl ' />
     },
     {
-      label: 'Skills',
-      href: 'skills',
+      label: "Skills",
+      href: "skills",
       icon: <GiSkills className='text-3xl ' />
     },
     {
-      label: 'Contact',
-      href: 'contact',
+      label: "Contact",
+      href: "contact",
       icon: <AiFillMail className='text-3xl ' />
     }
   ];
 
   const handleScroll = (id) => {
+    console.log(id);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
+  console.log(showMenu);
 
-  return (
-    <div
-      className={`hidden sm:block sm:fixed left-8 h-96 w-24 top-60  opacity-${opacity}`}
-      onMouseOver={() => changeOpacity(1)}
-    >
-      <ul className='flex h-full flex-col justify-around'>
-        {menuOptions.map((menu) => {
-          return (
+  if (showMenu === false) {
+    return (
+      <FiMenu
+        className='fixed mt-2 ml-2 text-3xl cursor-pointer'
+        onClick={() => setShowMenu(true)}
+      />
+    );
+  } else
+    return (
+      <div
+        className='fixed h-screen w-4/5 sm:w-2/6 bg-gray-50 z-10'
+        onMouseLeave={() => setShowMenu(false)}
+      >
+        <ul className='w-full h-full flex flex-col justify-start'>
+          {menuOptions.map(({ label, href }) => (
             <li
-              key={menu.label}
-              className={`flex flex-col  justify-center items-center hover:shadow-lg ${
-                selected === menu.href ? selectedColor : ''
-              } p-2 cursor-pointer`}
+              key={href}
               onClick={() => {
-                setSelected(menu.href);
-                handleScroll(menu.href);
+                setShowMenu(false);
+                handleScroll(href);
               }}
+              className='w-full cursor-pointer border-b-2 py-6 pl-4 border-b-gray-500 hover:bg-gray-100'
             >
-              {menu.icon}
-              <p className='text-center text-sm'>{menu.label}</p>
+              <span className='text-2xl'>{label}</span>
             </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+          ))}
+        </ul>
+      </div>
+    );
 };
 
 export default Menu;

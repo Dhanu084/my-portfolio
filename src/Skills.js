@@ -1,39 +1,40 @@
-import React, { useEffect, useState } from 'react';
-import { SiJavascript } from 'react-icons/si';
-import { RiStarSLine, RiStarSFill } from 'react-icons/ri';
-import { FaPython, FaReact, FaNode, FaAws } from 'react-icons/fa';
-import { SiJest } from 'react-icons/si';
-import useIntersectionObserver from './hooks/useIntersectionObserver';
+import React, { useEffect, useState } from "react";
+import { SiJavascript } from "react-icons/si";
+import { RiStarSLine, RiStarSFill } from "react-icons/ri";
+import { FaPython, FaReact, FaNode, FaAws } from "react-icons/fa";
+import { SiJest } from "react-icons/si";
+import useIntersectionObserver from "./hooks/useIntersectionObserver";
 
+const commonClass = "text-4xl";
 const skillsArray = [
   {
-    name: 'Javascript',
-    icon: <SiJavascript className='text-4xl' />,
+    name: "Javascript",
+    icon: <SiJavascript className={commonClass} />,
     rating: 4
   },
   {
-    name: 'Python',
-    icon: <FaPython className='text-4xl' />,
+    name: "Python",
+    icon: <FaPython className={commonClass} />,
     rating: 4
   },
   {
-    name: 'ReactJs',
-    icon: <FaReact className='text-4xl' />,
+    name: "ReactJs",
+    icon: <FaReact className={commonClass} />,
     rating: 4
   },
   {
-    name: 'NodeJs',
-    icon: <FaNode className='text-5xl' />,
+    name: "NodeJs",
+    icon: <FaNode className={commonClass} />,
     rating: 3
   },
   {
-    name: 'AWS',
-    icon: <FaAws className='text-4xl' />,
+    name: "AWS",
+    icon: <FaAws className={commonClass} />,
     rating: 3
   },
 
   {
-    name: 'Jest',
+    name: "Jest",
     icon: <SiJest className='text-4xl' />,
     rating: 3
   }
@@ -43,7 +44,7 @@ const Skills = () => {
   const { shouldAnimate } = useIntersectionObserver(observable);
 
   useEffect(() => {
-    setObservable(document.querySelector('#skills'));
+    setObservable(document.querySelector("#skills"));
   }, []);
 
   return (
@@ -60,7 +61,7 @@ const Skills = () => {
                 >
                   <div
                     className={`m-auto text-4xl text-${skill.color}-400 ${
-                      shouldAnimate ? 'animate-spin' : ''
+                      shouldAnimate ? "animate-spin" : ""
                     }`}
                   >
                     {skill.icon}
@@ -71,14 +72,14 @@ const Skills = () => {
                       if (index + 1 <= skill.rating) {
                         return (
                           <RiStarSFill
-                            key={index + skill.rating + ''}
+                            key={index + skill.rating + ""}
                             className='inline-block text-4xl '
                           />
                         );
                       } else
                         return (
                           <RiStarSLine
-                            key={index + skill.rating + ''}
+                            key={index + skill.rating + ""}
                             className='inline-block text-4xl text-red-500'
                           />
                         );
@@ -94,7 +95,7 @@ const Skills = () => {
               <div key={skill.name} className='grid sm:grid-cols-2 gap-0 mt-4'>
                 <div
                   className={`m-auto text-4xl text-${skill.color}-400 ${
-                    shouldAnimate ? 'animate-spin' : ''
+                    shouldAnimate ? "animate-spin" : ""
                   }`}
                 >
                   {skill.icon}
@@ -105,14 +106,14 @@ const Skills = () => {
                     if (index + 1 <= skill.rating) {
                       return (
                         <RiStarSFill
-                          key={index + skill.rating + ''}
+                          key={index + skill.rating + ""}
                           className='inline-block text-4xl '
                         />
                       );
                     } else
                       return (
                         <RiStarSLine
-                          key={index + skill.rating + ''}
+                          key={index + skill.rating + ""}
                           className='inline-block text-4xl text-red-500'
                         />
                       );

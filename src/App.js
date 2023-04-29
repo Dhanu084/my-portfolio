@@ -1,13 +1,12 @@
-import './App.css';
-import Bio from './Bio';
-import Direction from './Direction';
-import Experiences from './Experiences';
-import Menu from './Menu';
-import Skills from './Skills';
+import "./App.css";
+import Bio from "./Bio";
+import Experiences from "./Experiences";
+import Menu from "./Menu";
+import Skills from "./Skills";
 
 function App() {
   return (
-    <div className='snap-y overflow-y-hidden'>
+    <div className='snap-y overflow-x-hidden'>
       <Menu />
       <Bio />
       <Experiences />
