@@ -1,5 +1,6 @@
 import "./App.css";
 import Bio from "./Bio";
+import Contact from "./Contact";
 import Experiences from "./Experiences";
 import Menu from "./Menu";
 import Skills from "./Skills";
@@ -11,6 +12,7 @@ function App() {
       <Bio />
       <Experiences />
       <Skills />
+      <Contact />
     </div>
   );
 }
