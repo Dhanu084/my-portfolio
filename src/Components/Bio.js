@@ -33,7 +33,7 @@ const Bio = () => (
         const { url, icon } = value;
         return (
           <li key={key}>
-            <a href={url} target='_blank'>
+            <a href={url} target='_blank' rel='noreferrer'>
               {icon}
             </a>
           </li>

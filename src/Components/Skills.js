@@ -3,7 +3,7 @@ import { SiJavascript } from "react-icons/si";
 import { RiStarSLine, RiStarSFill } from "react-icons/ri";
 import { FaPython, FaReact, FaNode, FaAws } from "react-icons/fa";
 import { SiJest } from "react-icons/si";
-import useIntersectionObserver from "./hooks/useIntersectionObserver";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const commonClass = "text-4xl";
 const skillsArray = [

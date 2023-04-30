@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import useIntersectionObserver from "./hooks/useIntersectionObserver";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const experienceList = [
   {
