@@ -15,8 +15,8 @@ const Menu = ({ theme, setTheme }) => {
 
   const menuOptions = [
     {
-      label: "Bio",
-      href: "bio",
+      label: "Profile",
+      href: "profile",
       icon: <CgProfile className='text-3xl color-white ' />
     },
     {

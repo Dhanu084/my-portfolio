@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Bio from "./Bio";
+import Profile from "./Profile";
 import Contact from "./Contact";
 import Experiences from "./Experiences";
 import Menu from "./Menu";
@@ -15,13 +15,13 @@ function App() {
         : html.classList.add("dark");
     }
   }, [theme]);
-  
+
   return (
     <div
       className={` bg-white dark:bg-black text-black dark:text-white snap-y overflow-x-hidden`}
     >
       <Menu theme={theme} setTheme={setTheme} />
-      <Bio />
+      <Profile />
       <Experiences />
       <Skills />
       <Contact />
