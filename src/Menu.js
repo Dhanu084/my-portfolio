@@ -5,8 +5,12 @@ import { GiSkills } from "react-icons/gi";
 import { AiFillMail } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
+import { MdDarkMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
 
-const Menu = () => {
+const commonThemeIconClasses = "text-2xl cursor-pointer";
+
+const Menu = ({ theme, setTheme }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const menuOptions = [
@@ -48,9 +52,9 @@ const Menu = () => {
         />
       )}
       <div
-        className={`transform fixed h-screen w-4/5 sm:w-2/6 bg-gray-50 z-10 ease-in-out transition-all duration-300 ${
+        className={`transform fixed h-screen w-4/5 sm:w-2/6 bg-gray-50 dark:bg-black  z-10 ease-in-out transition-all duration-300 ${
           showMenu ? "left-0" : "-left-[1000px]"
-        }`}
+        }  dark:border-r-2 border-gray-300`}
         onMouseLeave={() => {
           if (showMenu) {
             setTimeout(() => setShowMenu(false), 3000);
@@ -59,6 +63,19 @@ const Menu = () => {
       >
         <ul className='w-full h-full flex flex-col justify-start '>
           <li className='text-right relative mb-4 py-4 pl-4'>
+            <span>
+              {theme === "light" ? (
+                <CiLight
+                  onClick={() => setTheme("dark")}
+                  className={commonThemeIconClasses}
+                />
+              ) : (
+                <MdDarkMode
+                  onClick={() => setTheme("light")}
+                  className={commonThemeIconClasses}
+                />
+              )}
+            </span>
             <IoMdClose
               className={`text-right absolute right-2 top-1 text-5xl cursor-pointer ${
                 showMenu ? "animate-spin1" : ""
@@ -73,7 +90,7 @@ const Menu = () => {
                 setShowMenu(false);
                 handleScroll(href);
               }}
-              className='cursor-pointer border-b-2 py-6 pl-4 border-b-gray-200 hover:bg-gray-100'
+              className={`cursor-pointer border-b-2 py-6 pl-4 border-b-gray-200 hover:bg-gray-100 dark:hover:text-black`}
             >
               <span className='text-2xl'>{label}</span>
             </li>

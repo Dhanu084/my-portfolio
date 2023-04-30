@@ -43,12 +43,12 @@ const Experiences = () => {
             <div
               className={`mx-auto mt-4 sm:mt-0  h-3/5 sm:h-3/5 lg:h-3/4 w-3/4 sm:w-80 shadow-lg ${
                 shouldAnimate ? "animate-bounce" : ""
-              }`}
+              } dark:border-2 border-white`}
               key={companyName}
             >
-              <div className='relative h-2/5 sm:h-2/5 w-full bg-black  flex justify-center items-center text-xl'>
+              <div className='relative h-2/5 sm:h-2/5 w-full bg-black  flex justify-center items-center text-xl dark:bg-red-400'>
                 <div
-                  className={`absolute bg-white text-4xl h-40 w-40 text-center -bottom-20 rounded-full flex justify-center items-center shadow-lg ${brandColor}`}
+                  className={`absolute bg-white text-4xl h-40 w-40 text-center -bottom-20 rounded-full flex justify-center items-center shadow-lg ${brandColor} dark:border-2 border-black`}
                 >
                   {companyName}
                 </div>
