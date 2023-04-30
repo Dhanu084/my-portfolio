@@ -39,17 +39,18 @@ const Menu = () => {
     }
   };
 
-  if (showMenu === false) {
-    return (
-      <FiMenu
-        className='fixed mt-2 ml-2 text-3xl cursor-pointer'
-        onClick={() => setShowMenu(true)}
-      />
-    );
-  } else
-    return (
+  return (
+    <>
+      {!showMenu && (
+        <FiMenu
+          className='fixed mt-2 ml-2 text-3xl cursor-pointer'
+          onClick={() => setShowMenu(true)}
+        />
+      )}
       <div
-        className='fixed h-screen w-4/5 sm:w-2/6 bg-gray-50 z-10'
+        className={`transform fixed h-screen w-4/5 sm:w-2/6 bg-gray-50 z-10 ease-in-out transition-all duration-300 ${
+          showMenu ? "left-0" : "-left-[1000px]"
+        }`}
         onMouseLeave={() => {
           if (showMenu) {
             setTimeout(() => setShowMenu(false), 3000);
@@ -57,9 +58,11 @@ const Menu = () => {
         }}
       >
         <ul className='w-full h-full flex flex-col justify-start '>
-          <li className='text-right relative mb-4'>
+          <li className='text-right relative mb-4 py-4 pl-4'>
             <IoMdClose
-              className='text-right absolute right-2 text-5xl cursor-pointer'
+              className={`text-right absolute right-2 top-1 text-5xl cursor-pointer ${
+                showMenu ? "animate-spin1" : ""
+              } `}
               onClick={() => setShowMenu(false)}
             />
           </li>
@@ -70,14 +73,15 @@ const Menu = () => {
                 setShowMenu(false);
                 handleScroll(href);
               }}
-              className='w-full cursor-pointer border-b-2 py-6 pl-4 border-b-gray-200 hover:bg-gray-100'
+              className='cursor-pointer border-b-2 py-6 pl-4 border-b-gray-200 hover:bg-gray-100'
             >
               <span className='text-2xl'>{label}</span>
             </li>
           ))}
         </ul>
       </div>
-    );
+    </>
+  );
 };
 
 export default Menu;
