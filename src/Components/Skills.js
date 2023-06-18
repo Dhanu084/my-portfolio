@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef } from "react";
 import { SiJavascript } from "react-icons/si";
 import { RiStarSLine, RiStarSFill } from "react-icons/ri";
 import { FaPython, FaReact, FaNode, FaAws } from "react-icons/fa";
@@ -40,15 +40,11 @@ const skillsArray = [
   }
 ];
 const Skills = () => {
-  const [observable, setObservable] = useState(null);
+  const observable = useRef(null);
   const { shouldAnimate } = useIntersectionObserver(observable);
 
-  useEffect(() => {
-    setObservable(document.querySelector("#skills"));
-  }, []);
-
   return (
-    <section id='skills' className='h-screen w-screen'>
+    <section id='skills' className='h-screen w-screen' ref={observable}>
       <h1 className='text-5xl text-center m-12 sm:m-0 mt-12'>Skills</h1>
       <div className='h-3/4 w-screen flex justify-center items-center'>
         <div className='h-full sm:h-2/3 flex flex-col sm:flex-row'>

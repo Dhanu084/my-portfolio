@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import IObserver from "../IObserver";
+import { useCallback } from "react";
 
 const DEFAULT_OPTIONS = {
   root: null,
@@ -9,22 +10,27 @@ const DEFAULT_OPTIONS = {
 const useIntersectionObserver = (element, options = { ...DEFAULT_OPTIONS }) => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
 
-  const intersectionCallback = (entries) => {
-    entries.forEach((item) => {
-      if (item.isIntersecting) {
-        setShouldAnimate(true);
-      }
-    });
-  };
+  const intersectionCallback = useCallback(
+    (entries) => {
+      entries.forEach((item) => {
+        if (item.isIntersecting) {
+          setShouldAnimate(true);
+        }
+      });
+    },
+    // es-lint-disable-next-line
+    [element.current, options]
+  );
 
   useEffect(() => {
-    if (!element) return;
+    if (!element || !element.current) return;
     const observer = new IObserver(intersectionCallback, options);
-    observer.observe(element);
+    observer.observe(element.current);
     return () => {
-      observer.unobserve(element);
+      observer.unobserve(element.current);
     };
-  }, [element, options]);
+    // es-lint-disable-next-line
+  }, [element.current, options]);
   return { shouldAnimate };
 };
 

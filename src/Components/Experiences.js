@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef } from "react";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const experienceList = [
@@ -25,16 +25,14 @@ const experienceList = [
 ];
 
 const Experiences = () => {
-  const [observable, setObservable] = useState(null);
+  const observable = useRef(null);
   const { shouldAnimate } = useIntersectionObserver(observable);
 
-  useEffect(() => {
-    setObservable(document.querySelector("#experience"));
-  }, []);
   return (
     <section
       id='experience'
       className='sm:h-screen sm:w-screen flex flex-col justify-around'
+      ref={observable}
     >
       <h1 className='text-5xl text-center m-12 sm:m-0 mt-12'>Experiences</h1>
       <div className='mt-4 h-[1200px]  sm:mt-0 sm:h-4/5 flex flex-col sm:flex-row justify-around items-center  sm:px-8 '>
