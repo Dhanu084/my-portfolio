@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
-import { color, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Card, Timeline } from "antd";
 
 const experienceList = [
@@ -9,7 +9,7 @@ const experienceList = [
     designation: "Software Engineer II",
     duration: "Present",
     techStack: "ReactJs",
-    brandColor: "text-teal-500"
+    brandColor: "text-teal-600"
   },
   {
     companyName: "Avalara",
@@ -55,8 +55,9 @@ const createTimeLineItems = () => {
         variants={cardVariance}
         initial='hidden'
         whileInView='visible'
+        style={{ fontWeight: "bold" }}
       >
-        <Card bordered={true} style={{ width: "auto" }}>
+        <Card bordered={true} style={{ width: "auto" }} hoverable={true}>
           <h4 className={exp.brandColor}>{exp.companyName}</h4>
           <p>{exp.designation}</p>
           <p>

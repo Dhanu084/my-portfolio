@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import { SiJavascript } from "react-icons/si";
-import { RiStarSLine, RiStarSFill } from "react-icons/ri";
 import { FaPython, FaReact, FaNode, FaAws } from "react-icons/fa";
 import { SiJest } from "react-icons/si";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
-
+import { Card } from "antd";
+import { RightOutlined } from "@ant-design/icons";
+import { motion } from "framer-motion";
 const commonClass = "text-4xl";
 const skillsArray = [
   {
@@ -39,88 +40,58 @@ const skillsArray = [
     rating: 3
   }
 ];
+
+const cardVariance = {
+  hidden: { opacity: 0, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const RightOutlinedItem = ({ children }) => {
+  return (
+    <p style={{ lineHeight: "2rem" }}>
+      <RightOutlined /> {children}
+    </p>
+  );
+};
 const Skills = () => {
   const observable = useRef(null);
   const { shouldAnimate } = useIntersectionObserver(observable);
 
   return (
-    <section id='skills' className='h-screen w-screen' ref={observable}>
-      <h1 className='text-5xl text-center m-12 sm:m-0 mt-12'>Skills</h1>
+    <motion.section
+      id='skills'
+      className='h-auto w-screen my-'
+      ref={observable}
+      variants={cardVariance}
+      initial='hidden'
+      whileInView='visible'
+    >
+      <h1 className='text-5xl text-center m-12 sm:m-0 mt-4'>Skills</h1>
       <div className='h-3/4 w-screen flex justify-center items-center'>
-        <div className='h-full sm:h-2/3 flex flex-col sm:flex-row'>
-          <div className='h-full flex flex-col justify-evenly'>
-            {skillsArray.slice(0, skillsArray.length / 2).map((skill) => {
+        <div className='h-full w-3/4 sm:h-2/3 flex flex-col sm:flex-row mt-2'>
+          <Card
+            title='Technical Skills'
+            bordered={true}
+            style={{ width: "100%" }}
+          >
+            {skillsArray.map((skill) => {
               return (
-                <div
-                  key={skill.name}
-                  className='grid sm:grid-cols-2 gap-0 mt-4'
-                >
-                  <div
-                    className={`m-auto text-4xl text-${skill.color}-400 ${
-                      shouldAnimate ? "animate-spin" : ""
-                    }`}
-                  >
-                    {skill.icon}
-                  </div>
-
-                  <div>
-                    {new Array(5).fill(0).map((s, index) => {
-                      if (index + 1 <= skill.rating) {
-                        return (
-                          <RiStarSFill
-                            key={index + skill.rating + ""}
-                            className='inline-block text-4xl '
-                          />
-                        );
-                      } else
-                        return (
-                          <RiStarSLine
-                            key={index + skill.rating + ""}
-                            className='inline-block text-4xl text-red-500'
-                          />
-                        );
-                    })}
-                  </div>
-                </div>
+                <RightOutlinedItem key={skill.name}>
+                  <span>{skill.name}</span>
+                </RightOutlinedItem>
               );
             })}
-          </div>
-
-          <div className='h-full flex flex-col justify-evenly'>
-            {skillsArray.slice(skillsArray.length / 2).map((skill) => (
-              <div key={skill.name} className='grid sm:grid-cols-2 gap-0 mt-4'>
-                <div
-                  className={`m-auto text-4xl text-${skill.color}-400 ${
-                    shouldAnimate ? "animate-spin" : ""
-                  }`}
-                >
-                  {skill.icon}
-                </div>
-
-                <div>
-                  {new Array(5).fill(0).map((s, index) => {
-                    if (index + 1 <= skill.rating) {
-                      return (
-                        <RiStarSFill
-                          key={index + skill.rating + ""}
-                          className='inline-block text-4xl '
-                        />
-                      );
-                    } else
-                      return (
-                        <RiStarSLine
-                          key={index + skill.rating + ""}
-                          className='inline-block text-4xl text-red-500'
-                        />
-                      );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
+          </Card>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

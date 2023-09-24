@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <section
       id='contact'
-      className='h-full w-screen bg-black text-center text-white flex flex-col  p-4 justify-center items-center'
+      className='h-full w-screen bg-black text-center text-white flex flex-col  p-4 justify-center items-center mt-2'
     >
       <h1 className='text-2xl'>Contact Me</h1>
       <div>
